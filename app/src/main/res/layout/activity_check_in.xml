@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CheckIn">
+
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Welcome"
+        android:layout_centerHorizontal="true"
+        android:textSize="35dp"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:text="Welcome \n to\n Saboo Lodge"
+        android:gravity="center_horizontal" />
+
+
+    <ImageView
+        android:layout_margin="8dp"
+        android:layout_below="@id/Welcome"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:id="@+id/cpme"/>
+
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scan Documents"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_above="@id/btnUpload"
+       />
+
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload Documents"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="36dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"/>
+
+
+</RelativeLayout>
