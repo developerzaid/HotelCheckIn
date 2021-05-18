@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements IOCRCallBack  {
     String[] strings ;
     TextView mApproveResult;
     TextView btnCallAPI;
+    Button rbButton;
     String ni;
     //    File fi;
     @Override
@@ -51,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements IOCRCallBack  {
         mTxtResult = (TextView) findViewById(R.id.main_text);
         btnCallAPI = (TextView) findViewById(R.id.btn_click);
         mApproveResult = findViewById(R.id.iusop);
-
+        rbButton = findViewById(R.id.btn453);
+        rbButton.setVisibility(View.GONE);
 
         mIOCRCallBack = this;
 //      mImageUrl = "https://i.ibb.co/dKgJQjw/dfgdfg.png"; // Image url to apply OCR API
@@ -67,14 +72,31 @@ public class MainActivity extends AppCompatActivity implements IOCRCallBack  {
         btnCallAPI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(ni.equals("720667012634")){
-                    mApproveResult.setText("Congratulations Zaid You are Granted to Checkin");
+                Log.d("Sdfwrer23",ni);
+                if(ni.trim().equals("720667012634")){
+                    mApproveResult.setText("Congratulations "+strings[0]+" You are Granted to Checkin");
+                    mApproveResult.setTextColor(Color.parseColor("#FF8BC34A"));
+                }
+                else{
+                    rbButton.setVisibility(View.VISIBLE);
+                    mApproveResult.setText("You are not approved to checkin");
+                    mApproveResult.setTextColor(Color.parseColor("#FFF44336"));
 
                 }
 
             }
         });
+
+        rbButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://forms.gle/vVA9PvBnpDemuzPLA"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 
@@ -91,16 +113,22 @@ public class MainActivity extends AppCompatActivity implements IOCRCallBack  {
           JSONObject Tstr = new JSONObject(response);
           JSONObject is = (JSONObject) Tstr.getJSONArray("ParsedResults").get(0);
           isl = is.getString("ParsedText");
-//          strings = isl.split("\n");
-//          ni = strings[3].replace(" ","");
-//          Log.d("2343  "," "+ni);
+          strings = isl.split("\n");
+          if(strings.length>2) {
+              ni = strings[3].replace(" ", "");
+
+          } Log.d("2343  "," "+ni);
           Log.d("some2323",isl);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        mTxtResult.setText(isl);
 
-//        mTxtResult.setText("USERNAME : "+strings[0]+"\nUSER AGE: "+strings[1]+"\n USER GENDER: "+strings[2]+"\n AADHAR NO: "+strings[3]);
+        if(ni!=null) {
+            mTxtResult.setText("USERNAME : " + strings[0] + "\nUSER AGE: " + strings[1] + "\nUSER GENDER: " + strings[2] + "\nADHAAR NO: " + strings[3]);
+        }
+        else{
+            mTxtResult.setText(isl);
+        }
     }
 
 

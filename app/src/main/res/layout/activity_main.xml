@@ -6,19 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:text="YOUR DETAILS"
+        android:id="@+id/details"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"
+        android:textSize="25sp"/>
+
 
     <TextView
         android:id="@+id/main_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_centerInParent="true"
+        android:layout_below="@id/details"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
         android:textColor="#000000"
         android:textSize="20sp"/>
 
     <Button
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="#FFC107"
+        android:background="#F44336"
         android:layout_marginBottom="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,18 +38,27 @@
         android:text="AUTHENTICATE ME"
         android:id="@+id/btn_click"/>
 
+    <Button
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#F44336"
+        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_click"
+        android:text="fill the form"
+        android:id="@+id/btn453"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btn_click"
-        android:text="gh"
+        android:layout_above="@+id/btn453"
+        android:text=""
+        android:layout_margin="16dp"
         android:id="@+id/iusop"
         android:textSize="20sp"
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"/>
-
-
 
 
 

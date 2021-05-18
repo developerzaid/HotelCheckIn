@@ -1,6 +1,7 @@
 package com.saboo.lodgecheckin;
 
 import  androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
@@ -12,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -50,6 +52,7 @@ public class CheckIn extends AppCompatActivity {
     Button Uploadbtn;
     Bitmap photo;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,10 +61,11 @@ public class CheckIn extends AppCompatActivity {
 
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
 
-
         imageView = findViewById(R.id.cpme);
         Scanbtn = findViewById(R.id.btn);
         Uploadbtn = findViewById(R.id.btnUpload);
+
+        imageView.setImageResource(R.drawable.saboo);
 
 
         Scanbtn.setOnClickListener(v -> {
@@ -77,10 +81,7 @@ public class CheckIn extends AppCompatActivity {
         });
 
 
-
         Uploadbtn.setOnClickListener(v -> gettingUrl(persistImage(photo,"namess")));
-
-
 
     }
 
@@ -116,8 +117,6 @@ public class CheckIn extends AppCompatActivity {
 
     }
 
-
-
     public void getImageData(Bitmap bmp) {
         Log.d("jshdfhsdf"," fgdsdfdsf ");
         ByteArrayOutputStream bao = new ByteArrayOutputStream();
@@ -150,8 +149,6 @@ public class CheckIn extends AppCompatActivity {
         }
         return imageFile;
     }
-
-
 
 
 
